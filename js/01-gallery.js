@@ -7,10 +7,8 @@ const { gallery } = {
 };
 
 //Creating Markup
-galleryItems.forEach((item) => {
-  gallery.insertAdjacentHTML(
-    "beforeend",
-    `<div class="gallery__item">
+const markup = galleryItems.map((item) => {
+  return `<div class="gallery__item">
   <a class="gallery__link" href="${item.original}" onclick="event.preventDefault()">
     <img
       class="gallery__image"
@@ -19,9 +17,10 @@ galleryItems.forEach((item) => {
       alt="${item.description}"
     />
   </a>
-</div>`
-  );
+</div>`;
 });
+
+gallery.insertAdjacentHTML("beforeend", markup.join(""));
 
 //Adding Events
 gallery.addEventListener("click", () => {

@@ -7,14 +7,13 @@ const { gallery } = {
 };
 
 //Creating markup
-galleryItems.forEach((item) => {
-  gallery.insertAdjacentHTML(
-    "beforeend",
-    `<a class="gallery__item" href="${item.original}">
+const markup = galleryItems.map((item) => {
+  return `<a class="gallery__item" href="${item.original}">
   <img class="gallery__image" src="${item.preview}" alt="${item.description}" title="test" />
-</a>`
-  );
+</a>`;
 });
+
+gallery.insertAdjacentHTML("beforeend", markup.join(""));
 
 //Initialize SimpleLightBox
 var lightbox = new SimpleLightbox(".gallery a", {
